@@ -14,7 +14,7 @@ public interface StringCollection {
 
     boolean contain(String str);
 
-    boolean equals(String[] str);
+    boolean equals(StringCollection str);
 
     boolean clear();
 

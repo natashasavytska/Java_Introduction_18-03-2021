@@ -9,7 +9,7 @@ public class CollectionDemo {
 
         myCollection.add("Hello");
         myCollection.add("Hello1");
-        myCollection.add("Hello2");
+        myCollection.add(null);
 
 //        myCollection.add("Hello3");
 //        myCollection.add("Hello4");
@@ -30,7 +30,8 @@ public class CollectionDemo {
 
         collectionToCompare.add("Hello");
         collectionToCompare.add("Hello1");
-        collectionToCompare.add("Hello2");
+        collectionToCompare.add(null);
+
 
 //        System.out.println(myCollection);
 //        System.out.println(myCollection.size());
@@ -39,7 +40,7 @@ public class CollectionDemo {
 //        myCollection.delete(1);
 //        System.out.println(myCollection);
 //        System.out.println(myCollection.size());
-//        System.out.println(myCollection.contain("Helo4"));
+//        System.out.println(myCollection.contain("Hello1"));
 
         System.out.println(myCollection.equals(collectionToCompare));
 //        myCollection.clear();

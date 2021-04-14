@@ -1,6 +1,7 @@
 package hw8;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class StringCollectionImpl implements StringCollection {
 
@@ -74,8 +75,16 @@ public class StringCollectionImpl implements StringCollection {
     }
 
     @Override
-    public boolean equals(String[] str) {
-        return Arrays.equals(internalArray, str);
+    public boolean equals(StringCollection str) {
+        if ((str == null) || (str.size() != indexOfNextFreeCell)) {
+            return false;
+        }
+        for (int i = 0; i < indexOfNextFreeCell; i++) {
+            if (!Objects.equals(internalArray[i], str.get(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -104,5 +113,20 @@ public class StringCollectionImpl implements StringCollection {
     @Override
     public String toString() {
         return Arrays.toString(internalArray);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StringCollectionImpl that = (StringCollectionImpl) o;
+        return indexOfNextFreeCell == that.indexOfNextFreeCell && Arrays.equals(internalArray, that.internalArray);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(indexOfNextFreeCell);
+        result = 31 * result + Arrays.hashCode(internalArray);
+        return result;
     }
 }
