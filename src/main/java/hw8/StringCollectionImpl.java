@@ -90,6 +90,7 @@ public class StringCollectionImpl implements StringCollection {
     @Override
     public boolean clear() {
         internalArray = null;
+        indexOfNextFreeCell = 0;
         internalArray = new String[10];
         return true;
     }
