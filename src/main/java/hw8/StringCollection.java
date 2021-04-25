@@ -1,5 +1,8 @@
 package hw8;
 
+import hw10.myIterator.MyIterator;
+import hw10.myIterator.MyIteratorImpl;
+
 public interface StringCollection {
 
     boolean add(String str);
@@ -19,4 +22,6 @@ public interface StringCollection {
     boolean clear();
 
     int size();
+
+    MyIterator iterator();
 }
