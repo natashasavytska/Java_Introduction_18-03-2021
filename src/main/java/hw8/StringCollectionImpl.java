@@ -1,5 +1,8 @@
 package hw8;
 
+import hw10.myIterator.MyIterator;
+import hw10.myIterator.MyIteratorImpl;
+
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -100,6 +103,11 @@ public class StringCollectionImpl implements StringCollection {
         return indexOfNextFreeCell;
     }
 
+    @Override
+    public MyIterator iterator() {
+        return new MyIteratorImpl(this);
+    }
+
     private void expandInternalArray() {
         int desiredCapacity = internalArray.length * 2;
         internalArrayLength = desiredCapacity;
@@ -130,4 +138,5 @@ public class StringCollectionImpl implements StringCollection {
         result = 31 * result + Arrays.hashCode(internalArray);
         return result;
     }
+
 }
