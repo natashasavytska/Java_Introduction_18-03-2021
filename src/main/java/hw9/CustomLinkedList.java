@@ -98,6 +98,7 @@ public class CustomLinkedList implements CustomCollection {
     @Override
     public boolean delete(String str) {
         Node currentNode = head;
+
         if (str == null) {
             for (int i = 0; i < size; i++) {
                 if (currentNode.element == null) {
@@ -129,6 +130,24 @@ public class CustomLinkedList implements CustomCollection {
 
     @Override
     public boolean contains(String str) {
+        Node currentNode = head;
+        if (str == null) {
+            for (int i = 0; i < size; i++) {
+                if (currentNode.element == null) {
+                    return true;
+                } else {
+                    currentNode = currentNode.next;
+                }
+            }
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (currentNode.element != null && currentNode.element.equals(str)) {
+                return true;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
         return false;
     }
 
@@ -159,8 +178,19 @@ public class CustomLinkedList implements CustomCollection {
     }
 
     @Override
-    public boolean compare(Collection coll) {
-        return false;
+    public boolean compare(Collection<String> coll) {
+        if (!(coll.size() == this.size)) {
+            return false;
+        }
+        Node currentNode = head;
+        for (String s : coll) {
+            if (s.equals(currentNode.element)) {
+                currentNode = currentNode.next;
+            } else {
+                return false;
+            }
+        }
+        return true;
     }
 
 

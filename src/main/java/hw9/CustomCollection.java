@@ -4,27 +4,27 @@ import java.util.Collection;
 
 public interface CustomCollection {
 
-    boolean add(String str); //+
+    boolean add(String str);
 
-    boolean addAll(String[] strArr);//+
+    boolean addAll(String[] strArr);
 
-    boolean addAll(Collection <String> strColl);//+
+    boolean addAll(Collection <String> strColl);
 
-    boolean delete (int index);//+
+    boolean delete (int index);
 
-    boolean delete (String str);//+
+    boolean delete (String str);
 
-    String get(int index);//+
+    String get(int index);
 
     boolean contains(String str);
 
-    boolean clear();//+
+    boolean clear();
 
-    int size();//+
+    int size();
 
-    boolean trim();//+
+    boolean trim();
 
-    boolean compare(Collection coll);
+    boolean compare(Collection <String> coll);
 
 }
 
