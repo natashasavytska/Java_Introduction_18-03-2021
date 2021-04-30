@@ -37,20 +37,40 @@ public class CustomLinkedList implements CustomCollection {
     }
 
     @Override
-    public boolean addAll(Collection strColl) {
-
-        return false;
+    public boolean addAll(Collection<String> strColl) {
+        for (String s : strColl) {
+            add(s);
+        }
+        return true;
     }
 
     @Override
     public boolean delete(int index) {
-        return false;
+        checkIfIndexIsCorrect(index);
+        Node nodeToBeRemoved = findNodeByIndex(index);
+        removeNode(nodeToBeRemoved);
+        return true;
     }
 
     private void checkIfIndexIsCorrect(int index) {
         if (index >= size || index < 0) {
             throw new OutOfListException("Index " + index + " is out of members of the list.");
         }
+    }
+
+    private void removeNode(Node toRemove) {
+        if (toRemove.equals(head)) {
+            head = head.next;
+            head.previous = null;
+        } else if (toRemove.equals(tail)) {
+            tail = tail.previous;
+            tail.next = null;
+        } else {
+            Node previousNode = toRemove.previous;
+            Node nextNode = toRemove.next;
+            createLinksBetweenNodes(previousNode, nextNode);
+        }
+        size--;
     }
 
     private Node findNodeByIndex(int index) {
@@ -77,6 +97,26 @@ public class CustomLinkedList implements CustomCollection {
 
     @Override
     public boolean delete(String str) {
+        Node currentNode = head;
+        if (str == null) {
+            for (int i = 0; i < size; i++) {
+                if (currentNode.element == null) {
+                    removeNode(currentNode);
+                    return true;
+                } else {
+                    currentNode = currentNode.next;
+                }
+            }
+            return false;
+        }
+        for (int i = 0; i < size; i++) {
+            if (currentNode.element != null && currentNode.element.equals(str)) {
+                removeNode(currentNode);
+                return true;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
         return false;
     }
 
@@ -94,7 +134,18 @@ public class CustomLinkedList implements CustomCollection {
 
     @Override
     public boolean clear() {
-        return false;
+        Node currentNode = head;
+        for (int i = 0; i < size; i++) {
+            currentNode.element = null;
+            currentNode.previous = null;
+            Node tmp = currentNode.next;
+            currentNode.next = null;
+            currentNode = tmp;
+        }
+        head = null;
+        tail = null;
+        size = 0;
+        return true;
     }
 
     @Override

@@ -16,8 +16,14 @@ public class CustomLinkedListDemo {
         list.addAll(list2);
         System.out.println(list.size());
         System.out.println(list);
-        System.out.println(list.get(2));
-
+        list.delete(null);
+        list.delete(0);
+        list.delete("arrayElement2");
+        System.out.println(list);
+        System.out.println(list.size());
+        list.clear();
+        System.out.println(list);
+        System.out.println(list.size());
 
     }
 }
