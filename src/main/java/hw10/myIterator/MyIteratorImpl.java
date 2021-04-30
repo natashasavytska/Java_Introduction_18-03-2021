@@ -2,7 +2,6 @@ package hw10.myIterator;
 
 import hw8.StringCollection;
 
-
 public class MyIteratorImpl implements MyIterator {
 
     StringCollection collection;
