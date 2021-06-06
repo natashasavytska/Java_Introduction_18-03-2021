@@ -1,6 +1,7 @@
 package hw14;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Homework14 {
 
@@ -20,16 +21,15 @@ public class Homework14 {
         digitsMap.put(0, Digits.ZERO);
 
         List<Integer> numbers = new ArrayList<>();
-        System.out.println("Enter your numbers (0-9) : ");
-        for (int i = 0; i < 5; i++) {
-            Scanner scanner = new Scanner(System.in);
-            int digit = scanner.nextInt();
-            if (digit >= 0 && digit <= 9) {
-                numbers.add(digit);
-            } else {
-                System.out.println("Choose digit from 0 to 9");
-            }
-        }
+        System.out.println("Enter your numbers: ");
+        Scanner scanner = new Scanner(System.in);
+        String digits = scanner.next();
+        String[] digitsArray = digits.split("");
+        Predicate<String> allDigits = (s -> s.matches("\\d+"));
+        Arrays.stream(digitsArray)
+                .filter(allDigits)
+                .mapToInt(Integer::parseInt).forEach(numbers::add);
+
 
         for (int i = 0; i < 7; i++) {
             printLine(numbers, i);
