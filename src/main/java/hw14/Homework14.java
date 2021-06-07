@@ -1,11 +1,10 @@
 package hw14;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class Homework14 {
 
-    static Map<Integer, String[][]> digitsMap = new HashMap<>();
+    static final Map<Integer, String[][]> digitsMap = new HashMap<>();
 
     public static void main(String[] args) {
 
@@ -17,7 +16,7 @@ public class Homework14 {
         digitsMap.put(6, Digits.SIX);
         digitsMap.put(7, Digits.SEVEN);
         digitsMap.put(8, Digits.EIGHT);
-        digitsMap.put(9, Digits.NiNE);
+        digitsMap.put(9, Digits.NINE);
         digitsMap.put(0, Digits.ZERO);
 
         List<Integer> numbers = new ArrayList<>();
@@ -25,19 +24,19 @@ public class Homework14 {
         Scanner scanner = new Scanner(System.in);
         String digits = scanner.next();
         String[] digitsArray = digits.split("");
-        Predicate<String> allDigits = (s -> s.matches("\\d+"));
         Arrays.stream(digitsArray)
-                .filter(allDigits)
-                .mapToInt(Integer::parseInt).forEach(numbers::add);
+                .filter(s -> s.matches("\\d+"))
+                .mapToInt(Integer::parseInt)
+                .forEach(numbers::add);
 
-
-        for (int i = 0; i < 7; i++) {
-            printLine(numbers, i);
+        int numberOfLines = 7;
+        for (int i = 0; i < numberOfLines; i++) {
+            printLine(numbers, i, digitsMap);
         }
     }
 
 
-    private static void printLine(List<Integer> numbers, int numberOfLine) {
+    private static void printLine(List<Integer> numbers, int numberOfLine, Map<Integer, String[][]> digitsMap) {
         for (Integer integer : numbers) {
             for (String character : digitsMap.get(integer)[numberOfLine]) {
                 System.out.print(character + " ");

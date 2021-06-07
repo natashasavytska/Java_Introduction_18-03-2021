@@ -1,5 +1,6 @@
 package hw14;
 
+
 public class Digits {
 
     static final String[][] ONE = {
@@ -82,7 +83,7 @@ public class Digits {
             {" ", "@", "@", "@", "@", "@", " "}
     };
 
-    static final String[][] NiNE = {
+    static final String[][] NINE = {
             {" ", "@", "@", "@", "@", "@", " "},
             {"@", " ", " ", " ", " ", " ", "@"},
             {"@", " ", " ", " ", " ", " ", "@"},
