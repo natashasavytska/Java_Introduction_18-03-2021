@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import static hw15.GameChoices.*;
 
-public class Rock_Scissors_Paper {
+public class RockScissorsPaper {
 
     static Map<GameChoices, GameChoices> beats = new HashMap<>();
 
