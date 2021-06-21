@@ -5,9 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-class User {
-     String name;
-     int score = 0;
+ class User {
+     private String name;
+     private int score = 0;
 
      public User(String name) {
           this.name = name;
