@@ -10,7 +10,7 @@ import static hw15.GameChoices.*;
 public class RockScissorsPaper {
 
     private static final Map<GameChoices, GameChoices> BEATS = new HashMap<>();
-    static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
 
     static {
         BEATS.put(PAPER, ROCK);
@@ -39,6 +39,7 @@ public class RockScissorsPaper {
             System.out.println("How many games do you want to play?");
             return sc.nextInt();
         } catch (InputMismatchException e) {
+            sc.nextLine();
             System.out.println("Please, write the number of games you want to play.");
             return chooseNumberOfGames(user);
         }
