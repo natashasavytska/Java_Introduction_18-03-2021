@@ -15,13 +15,10 @@ public class StringCollectionImpl implements StringCollection {
 
     @Override
     public boolean add(String str) {
-        if (indexOfNextFreeCell < internalArrayLength - 1) {
-            addElementToInternalArray(str, indexOfNextFreeCell);
-            return true;
-        } else {
+        if (indexOfNextFreeCell >= internalArrayLength - 1) {
             expandInternalArray();
-            addElementToInternalArray(str, indexOfNextFreeCell);
         }
+        addElementToInternalArray(str, indexOfNextFreeCell);
         return true;
     }
 
@@ -56,10 +53,13 @@ public class StringCollectionImpl implements StringCollection {
     @Override
     public boolean delete(int index) {
         internalArray[index] = null;
-        if (indexOfNextFreeCell - (index + 1) >= 0)
+        if (indexOfNextFreeCell - (index + 1) >= 0) {
             System.arraycopy(internalArray, index + 1, internalArray, index + 1 - 1, indexOfNextFreeCell - (index + 1));
-        indexOfNextFreeCell--;
-        return true;
+            indexOfNextFreeCell--;
+            return true;
+        }
+
+        return false;
     }
 
     @Override
