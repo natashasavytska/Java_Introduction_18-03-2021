@@ -23,7 +23,13 @@ public class RockScissorsPaper {
         User computer = new User("Computer");
         User user = createPlayerProfile();
         int numberOfGames = chooseNumberOfGames(user);
-        playGame(numberOfGames, user, computer);
+        for (int i = 0; i < numberOfGames; i++) {
+            playGame(user, computer);
+            if (i < numberOfGames - 1) {
+                if (checkToContinue() == 0)
+                    break;
+            }
+        }
         writeFinalResults(user, computer);
     }
 
@@ -54,7 +60,7 @@ public class RockScissorsPaper {
         return gameChoices.get(computerChoice);
     }
 
-    private static GameChoices userMakesChoice() throws IllegalArgumentException {
+    private static GameChoices userMakesChoice() {
 
         try {
             System.out.println("Pick: \n * rock \n * scissors  \n * paper.");
@@ -65,19 +71,13 @@ public class RockScissorsPaper {
         }
     }
 
-    private static void playGame(int numberOfGames, User user, User computer) {
-        for (int i = 0; i < numberOfGames; i++) {
-            GameChoices userChoice = userMakesChoice();
-            System.out.println("Your choice is: " + userChoice);
-            GameChoices computerChoice = generationOfComputerChoice();
-            System.out.println("Computer's choice is: " + computerChoice);
-            findOneGameResult(userChoice, computerChoice, user, computer);
+    private static void playGame(User user, User computer) {
+        GameChoices userChoice = userMakesChoice();
+        System.out.println("Your choice is: " + userChoice);
+        GameChoices computerChoice = generationOfComputerChoice();
+        System.out.println("Computer's choice is: " + computerChoice);
+        findOneGameResult(userChoice, computerChoice, user, computer);
 
-            if (i < numberOfGames - 1) {
-                if (checkToContinue() == 0)
-                    break;
-            }
-        }
     }
 
     private static int checkToContinue() {
